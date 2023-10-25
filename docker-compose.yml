@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  app:
+    build: ./src
+
+  nginx-web:
+    image: nginx:latest
+    
+    ports:
+      - "8080:80"
+
+    volumes:
+      - ./nginx.e:/etc/nginx/conf.d/default.conf
+      - ./logs:/var/log/nginx/
+      
+        
+
+    depends_on:
+      - app    
